@@ -5,7 +5,7 @@ services:
     networks:
       - demo-net
   app:
-    image: flin/page-hit-counter
+      image: flin/page-hit-counter:v1
     ports:
       - 5000:5000
     depends_on:
