@@ -1,9 +1,17 @@
-redis:
-    image: redis:3.0.5
-
-app:
-    image: page-hit-counter
-    links:
-    - "redis:redis"
+version: "2"
+services:
+  redis:
+    image: redis:3.2.5-alpine
+    networks:
+      - demo-net
+  app:
+    image: flin/page-hit-counter
     ports:
-    - "127.0.0.1:80:5000"
+      - 5000:5000
+    depends_on:
+      - redis
+    networks:
+      - demo-net
+networks:
+  demo-net:
+    external: true
